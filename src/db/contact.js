@@ -27,6 +27,7 @@ const contactSchema = new Schema(
   {
     timestamps: true,
   },
+  { __v: { type: Number, select: false}},
 );
 
 export const Contact = model('contacts', contactSchema);

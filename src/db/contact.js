@@ -27,10 +27,13 @@ const contactSchema = new Schema(
       type: Schema.ObjectId,
       ref: 'users',
     },
+    photo: {
+      type: String,
+    },
   },
   {
-    versionKey: false,
     timestamps: true,
+    versionKey: false,
   },
 );
 

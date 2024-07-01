@@ -7,6 +7,7 @@ import { errorHandler } from './middlewares/errorHandler.js';
 import router from './routers/index.js';
 import cookieParser from 'cookie-parser';
 import { UPLOAD_DIR } from './constants/index.js';
+import { swaggerDocs } from './middlewares/swaggerDocs.js';
 
 dotenv.config();
 
@@ -16,6 +17,8 @@ export const setupServer = () => {
   const app = express();
 
   app.use(express.json());
+  app.use('/uploads', express.static(UPLOAD_DIR));
+  app.use('/api-docs', swaggerDocs());
 
   app.use(cors());
 
@@ -36,8 +39,6 @@ export const setupServer = () => {
   });
 
   app.use(router);
-
-  app.use('/uploads', express.static(UPLOAD_DIR));
 
   app.use('*', notFoundHandler);
 
